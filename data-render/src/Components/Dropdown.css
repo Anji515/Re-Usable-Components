@@ -1,0 +1,35 @@
+.search-dropdown {
+    position: relative;
+    display: inline-block;
+    border: 1px solid red;
+    width: 50%;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid rgb(17, 255, 0);
+    background-color: #e0e0e0;
+    width: 100%;
+  }
+  
+  .selected-option {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    background-color: #e0e0e0;
+    margin: 2px;
+    border-radius: 4px;
+    
+  }
+  
+  .remove-option {
+    cursor: pointer;
+    margin-left: 4px;
+  }
+  
+  .input-container input {
+    padding: 4px;
+  }
+  
