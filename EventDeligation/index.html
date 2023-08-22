@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Parcel Sandbox</title>
+    <title>Event Deligation</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -12,6 +12,23 @@
       <li>Apple</li>
       <li>Banana</li>
     </ul>
+
+    <br>
+    <br>
+    <nav id="mainMenu">
+        <ul>
+          <li class="dropdown-toggle">Home</li>
+          <li class="dropdown-toggle">About
+            <ul class="dropdown">
+              <li>History</li>
+              <li>Team</li>
+              <li>Contact</li>
+            </ul>
+          </li>
+          <li class="dropdown-toggle">Services</li>
+          <!-- ... more menu items ... -->
+        </ul>
+      </nav>
+      <script src="./index.js" type="module"></script>
 </body>
 </html>
-<script src="./index.js" type="module"></script>
