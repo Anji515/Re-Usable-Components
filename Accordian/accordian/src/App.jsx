@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Accordian from './Components/Accordian';
 import { useState } from 'react';
+import FetchData from './Fetch/FetchData';
 
 function AccordionItem({ title, text }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,6 +33,9 @@ function App() {
       {prodItems.map((el) => (
         <AccordionItem key={el.id} title={el.title} text={el.text} />
       ))}
+      <br />
+      <br />
+      <FetchData/>
     </div>
   );
 }
