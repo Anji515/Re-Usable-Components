@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import useThrottle  from './useThrottle';
 
 const FetchData =() => {
   const [data, setData] = useState([]);
   const [text, setText] = useState('');
   const [filtered,setFiltered]=useState([])
+
+  // const trottledValue=useThrottle(text,2000)
+  // console.log('trottledValue',trottledValue)
 
   const useDebounce=(value,delay)=>{
     const [text,setText]=useState(value);
