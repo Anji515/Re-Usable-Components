@@ -1,36 +1,42 @@
 import React, { useEffect, useState } from 'react';
 
-const FetchData = () => {
+const FetchData =() => {
   const [data, setData] = useState([]);
   const [text, setText] = useState('');
-  const [filter, setFilter] = useState(data);
+  const [filtered,setFiltered]=useState([])
 
-  
-  useEffect(() => {
-    fetchUsers();
-    filterData()
-  }, []);
-
-  useEffect(() => {
-    const debouncedFilterData = Debouncing(filterData, 3000);
-    debouncedFilterData();
-  },[text]);
-
-  function Debouncing(fun, delay) {
+  const useDebounce=(value,delay)=>{
+    const [text,setText]=useState(value);
     let id;
-    return function () {
-      clearTimeout(id);
-      id = setTimeout(() => {
-        fun();
-      }, delay);
-    };
-  }
+    useEffect(()=>{
+      let id=setTimeout(()=>{
+       setText(value)
+      },delay)
+      return ()=>{
+       clearTimeout(id)
+     }
+    },[value,delay])
+    return text;
+ }
+  const debouncedValue=useDebounce(text,3000)
+
+  useEffect(()=>{
+    fetchUsers();
+  },[])
+
+  useEffect(() => {
+    if(debouncedValue){
+      // console.log('debouncedValue',debouncedValue)
+      filterData(debouncedValue)
+    }
+  }, [debouncedValue]);
 
   function filterData() {
     let filteredData = data.filter((el) =>
-      el.name.toLowerCase().includes(text.toLowerCase())
+      el.name.toLowerCase().includes(debouncedValue.toLowerCase())
     );
-    setData(filteredData);
+    console.log('Filtered',filteredData)
+    setFiltered(filteredData);
   }
 
   const fetchUsers = async () => {
@@ -38,6 +44,7 @@ const FetchData = () => {
       let response = await fetch(`https://jsonplaceholder.typicode.com/users`);
       let data = await response.json();
       setData(data);
+      setFiltered(data)
     } catch (error) {
       console.log(error);
     }
@@ -53,7 +60,7 @@ const FetchData = () => {
         placeholder="search users"
       />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '20px' }}>
-        {data?.map((el) => (
+        {filtered?.map((el) => (
           <ul key={el.id} style={{ border: '1px solid grey', padding: '10%' }}>
             <h4>Name: {el.name}</h4>
             <p>Email: {el.email}</p>
