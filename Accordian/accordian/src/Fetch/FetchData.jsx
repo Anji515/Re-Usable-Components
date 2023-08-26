@@ -7,7 +7,6 @@ const FetchData =() => {
 
   const useDebounce=(value,delay)=>{
     const [text,setText]=useState(value);
-    let id;
     useEffect(()=>{
       let id=setTimeout(()=>{
        setText(value)
@@ -26,7 +25,6 @@ const FetchData =() => {
 
   useEffect(() => {
     if(debouncedValue){
-      // console.log('debouncedValue',debouncedValue)
       filterData(debouncedValue)
     }
   }, [debouncedValue]);
