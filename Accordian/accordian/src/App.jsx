@@ -3,6 +3,7 @@ import './App.css';
 import Accordian from './Components/Accordian';
 import { useState } from 'react';
 import FetchData from './Fetch/FetchData';
+import Throatle from './Fetch/Troattle';
 
 function AccordionItem({ title, text }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +37,7 @@ function App() {
       <br />
       <br />
       <FetchData/>
+      <Throatle/>
     </div>
   );
 }
