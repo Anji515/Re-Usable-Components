@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="handleBtn">Click</button>
+</body>
+</html>
+<script>
+   const handleBtn=document.getElementById('handleBtn');
+
+   function troattle(fun,delay){
+    let id=false;
+    return function(){
+        if(!id){
+            id=true
+            fun();
+            setTimeout(()=>{
+             id=false
+            },delay)
+        }
+    }
+   }
+
+   let count=0;
+   function fun(){
+    console.log(count++)
+   }
+
+   handleBtn.addEventListener('click',troattle(fun,3000))
+</script>
